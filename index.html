@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Will You Be My Valentine?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="proposal-page">
+    <div class="bg-blur"></div>
+    <div class="hearts-layer" id="heartsLayer" aria-hidden="true"></div>
+
+    <main class="proposal-screen">
+      <section class="proposal-card" id="proposalCard">
+        <p class="intro">For my favorite person in the world</p>
+        <h1>Will you be my Valentine?</h1>
+        <p class="subtext">
+          Every heartbeat of mine says your name. I have one question for you...
+        </p>
+
+        <div class="button-row">
+          <button id="yesBtn" class="btn yes" type="button">YES</button>
+          <button id="noBtn" class="btn no" tabindex="-1" type="button">NO</button>
+        </div>
+
+        <button class="music-toggle" id="musicToggle" aria-label="Toggle background music" type="button">
+          Play Music
+        </button>
+        <audio id="bgMusic" loop preload="none" src="music.mp3"></audio>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

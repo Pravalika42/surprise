@@ -1,0 +1,426 @@
+﻿:root {
+  --bg1: #fff1f4;
+  --bg2: #ffdce6;
+  --rose: #ff4f7c;
+  --rose-dark: #d72660;
+  --wine: #8f1a42;
+  --text: #5b1631;
+  --shadow: 0 18px 40px rgba(170, 39, 81, 0.24);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at 10% 20%, var(--bg1), transparent 45%),
+    radial-gradient(circle at 80% 0%, #ffd3e0, transparent 40%),
+    linear-gradient(135deg, #ffe9ef 0%, var(--bg2) 55%, #ffc9da 100%);
+  overflow-x: hidden;
+}
+
+.bg-blur {
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.12) 12px,
+    rgba(255, 255, 255, 0) 12px,
+    rgba(255, 255, 255, 0) 24px
+  );
+  pointer-events: none;
+}
+
+.hearts-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.heart {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: rgba(255, 80, 130, 0.7);
+  transform: rotate(45deg);
+  animation: floatUp linear forwards;
+  filter: drop-shadow(0 0 8px rgba(255, 50, 110, 0.35));
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: inherit;
+}
+
+.heart::before {
+  top: -8px;
+  left: 0;
+}
+
+.heart::after {
+  left: -8px;
+  top: 0;
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 0;
+    transform: translateY(0) rotate(45deg) scale(0.75);
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-110vh) rotate(45deg) scale(1.4);
+  }
+}
+
+.proposal-screen {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.proposal-card {
+  width: min(92vw, 700px);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 28px;
+  padding: 2.5rem 1.5rem 2rem;
+  box-shadow: var(--shadow);
+  animation: fadeRise 0.8s ease;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.proposal-card.leaving {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+@keyframes fadeRise {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.intro {
+  margin: 0;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #b22d5d;
+}
+
+h1 {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(2.3rem, 7vw, 4.6rem);
+  margin: 0.5rem 0 0.65rem;
+  color: var(--wine);
+}
+
+.subtext {
+  margin: 0 auto 1.8rem;
+  width: min(95%, 560px);
+  font-size: 1rem;
+  color: #7a2d4a;
+}
+
+.button-row {
+  position: relative;
+  min-height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin: 1rem auto 0.6rem;
+}
+
+.btn {
+  border: none;
+  border-radius: 999px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 0.8rem 2rem;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+.yes {
+  background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(214, 38, 96, 0.4);
+}
+
+.yes:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 16px 30px rgba(214, 38, 96, 0.48);
+}
+
+.no {
+  background: #fff;
+  color: #c3295c;
+  border: 2px solid #f18bb0;
+  box-shadow: 0 6px 14px rgba(199, 42, 90, 0.2);
+}
+
+.music-toggle {
+  margin-top: 0.8rem;
+  background: transparent;
+  border: 1px solid rgba(199, 42, 90, 0.35);
+  color: #9b2851;
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.music-toggle:hover {
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.letter-page-content {
+  position: relative;
+  z-index: 1;
+}
+
+.valentine-letter-section,
+.photo-gallery-section {
+  min-height: 100vh;
+  padding: 3.5rem 1rem;
+  display: grid;
+  place-items: center;
+}
+
+.letter-card {
+  width: min(92vw, 880px);
+  border-radius: 26px;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: linear-gradient(180deg, #fff9fc 0%, #ffeef4 100%);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 26px 45px rgba(88, 8, 35, 0.28);
+}
+
+.letter-intro {
+  margin: 0;
+  text-align: center;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #bb3a68;
+  animation: fadeInUp 1s ease both;
+}
+
+#letter-heading {
+  font-size: clamp(2.4rem, 7vw, 4.8rem);
+  text-align: center;
+  margin: 0.5rem 0 1.1rem;
+  animation: fadeInUp 1s ease 0.12s both;
+}
+
+.letter-body p {
+  margin: 0 0 1rem;
+  line-height: 1.85;
+  color: #6e2442;
+  font-size: clamp(1rem, 2.3vw, 1.1rem);
+  animation: fadeInUp 0.9s ease both;
+}
+
+.letter-body p:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.letter-body p:nth-child(2) {
+  animation-delay: 0.34s;
+}
+
+.letter-body p:nth-child(3) {
+  animation-delay: 0.48s;
+}
+
+.letter-signoff {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  color: #9f1f4c;
+  margin-top: 1.2rem;
+}
+
+
+.photo-memory figcaption {
+  padding: 0.9rem 1rem 1.1rem;
+  color: #69233f;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.waterfall-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+.memory-wall {
+  position: relative;
+  margin-top: 2rem;
+  padding: 2.5rem 1rem 3rem;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #fff7fb 0%, #ffeef6 55%, #ffe8f1 100%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 14px 32px rgba(203, 87, 135, 0.16);
+  overflow: hidden;
+}
+
+.memory-wall__header {
+  text-align: center;
+  margin-bottom: 1.4rem;
+}
+
+.memory-wall__header h2 {
+  margin: 0;
+  color: #9d2a56;
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+}
+
+.memory-wall__header p {
+  margin: 0.35rem 0 0;
+  color: #b14a74;
+}
+
+.memory-wall__decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.float-heart {
+  position: absolute;
+  font-size: 14px;
+  color: rgba(240, 97, 152, 0.35);
+  animation: driftUp 7s ease-in-out infinite;
+}
+
+.h1 { left: 8%; top: 78%; animation-delay: 0s; }
+.h2 { left: 24%; top: 86%; animation-delay: 1.4s; }
+.h3 { left: 73%; top: 80%; animation-delay: 2.1s; }
+.h4 { left: 90%; top: 88%; animation-delay: 0.8s; }
+
+@keyframes driftUp {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.25; }
+  50% { transform: translateY(-22px) scale(1.08); opacity: 0.5; }
+}
+
+.memory-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(130px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.memory-card {
+  --tilt: -1deg;
+  margin: 0;
+  padding: 10px 10px 14px;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(164, 83, 117, 0.2);
+  transform: rotate(var(--tilt));
+  transition: transform 0.32s ease, box-shadow 0.32s ease;
+}
+
+.memory-card img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 3px;
+  display: block;
+}
+
+.memory-card figcaption {
+  margin-top: 0.65rem;
+  text-align: center;
+  color: #8d2f57;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+}
+
+.memory-card:hover {
+  transform: rotate(0deg) scale(1.04);
+  box-shadow: 0 14px 24px rgba(164, 83, 117, 0.28);
+}
+
+@media (max-width: 900px) {
+  .memory-row {
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .memory-wall {
+    padding: 2rem 0.8rem 2.4rem;
+  }
+
+  .memory-row {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+}
+
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 700px) {
+  .proposal-card {
+    padding-top: 2rem;
+  }
+
+  .subtext {
+    font-size: 0.95rem;
+  }
+
+  .valentine-letter-section,
+  .photo-gallery-section {
+    padding: 2.4rem 0.85rem;
+  }
+
+ 
+
+  
+}
