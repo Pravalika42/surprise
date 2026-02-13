@@ -35,14 +35,15 @@ function moveNoButton() {
   if (!noBtn) return;
 
   const padding = 14;
-  const vw = window.innerWidth;
-  const vh = window.innerHeight;
+  const viewport = window.visualViewport;
+  const vw = viewport ? viewport.width : window.innerWidth;
+  const vh = viewport ? viewport.height : window.innerHeight;
   const btnRect = noBtn.getBoundingClientRect();
-  const maxX = Math.max(padding, vw - btnRect.width - padding);
-  const maxY = Math.max(padding, vh - btnRect.height - padding);
+  const maxX = Math.max(0, vw - btnRect.width - padding * 2);
+  const maxY = Math.max(0, vh - btnRect.height - padding * 2);
 
-  const x = Math.random() * maxX;
-  const y = Math.random() * maxY;
+  const x = padding + Math.random() * maxX;
+  const y = padding + Math.random() * maxY;
 
   noBtn.style.position = "fixed";
   noBtn.style.left = "0";
@@ -77,6 +78,8 @@ if (noBtn) {
 
   document.addEventListener("mousemove", keepNoAway);
   document.addEventListener("touchmove", moveNoButton, { passive: true });
+  window.addEventListener("resize", moveNoButton);
+  window.visualViewport?.addEventListener("resize", moveNoButton);
   moveNoButton();
 }
 
